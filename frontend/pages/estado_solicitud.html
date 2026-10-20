@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becas Bicentenario | Estado de Solicitud</title>
+<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<!-- Navbar estándar: logo SVG + menú por rol + avatar/badge + salir -->
+<header class="site-header">
+<nav class="navbar" aria-label="Navegación principal">
+<a href="dashboard.html" class="navbar__brand"><img src="../img/logo.svg" alt="Logo Becas Bicentenario"> Becas Bicentenario</a>
+<button class="navbar__toggle" aria-label="Abrir menú">☰</button>
+<ul class="navbar__menu">
+<li><a class="navbar__link" data-public="1" data-roles="Estudiante,Evaluador,Administrador" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10h-5v-6h-6v6H4z"/></svg>Panel</a></li>
+<li><a class="navbar__link" data-roles="Estudiante" href="solicitar_beca.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M9 12h7M9 16h7"/></svg>Postular</a></li>
+<li><a class="navbar__link" data-roles="Estudiante" href="estado_solicitud.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mi estado</a></li>
+<li><a class="navbar__link" data-public="1" data-roles="Estudiante,Evaluador,Administrador" href="becas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg>Becas</a></li>
+<li><a class="navbar__link" data-roles="Evaluador,Administrador" href="gestionar_solicitudes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 13l2 2 4-4"/></svg>Evaluar</a></li>
+<li><a class="navbar__link" data-roles="Administrador" href="reportes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Reportes</a></li>
+</ul>
+<div class="navbar__user">
+<span class="navbar__avatar" data-avatar>?</span>
+<span class="navbar__badge" data-rol-badge>Invitado</span>
+<a class="navbar__logout" data-logout href="#" onclick="logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4M16 17l5-5-5-5M21 12H9"/></svg>Salir</a>
+<a class="navbar__logout" data-login-link href="login.html">Ingresar</a>
+</div>
+</nav>
+</header>
+
+<main class="container">
+<div class="page-head">
+<nav class="breadcrumb" aria-label="Ruta"><a href="dashboard.html">Panel</a> / Estado de solicitud</nav>
+<h1>Módulo 2: Estado de Solicitud</h1>
+<p>Consulta el expediente oficial de tus postulaciones y su estado dictaminado.</p>
+</div>
+<section aria-labelledby="t-exp">
+<h2 id="t-exp">Mi expediente</h2>
+<!-- El JS muestra aquí un .empty-state si no hay sesión o no hay registros -->
+<div id="expediente-vacio"></div>
+<div class="tabla-wrap">
+<table class="tabla">
+<thead><tr><th>ID</th><th>Institución</th><th>Carrera</th><th>Estado</th><th>Actualización</th></tr></thead>
+<tbody id="tbody-expediente">
+<tr><td>1</td><td>Univ. Mayor de San Andrés</td><td>Ing. de Sistemas</td>
+<td><span class="badge badge--aprobada">Aprobada</span></td><td>2026-10-05</td></tr>
+<tr><td>2</td><td>Col. Nacional Ayacucho</td><td>Bach. en Ciencias</td>
+<td><span class="badge badge--pendiente">Pendiente</span></td><td>2026-10-05</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Ejemplo badge rechazada (la crea el JS cuando el dictamen es No Favorable):
+<span class="badge badge--rechazada">Rechazada</span> -->
+</section>
+</main>
+
+<!-- Footer institucional de 3 columnas -->
+<footer class="site-footer">
+<div class="footer-grid">
+<div>
+<img class="footer__logo" src="../img/logo.svg" alt="Logo Becas Bicentenario">
+<p class="footer__lema">Impulsando el futuro de nuestra nación</p>
+<p class="footer__copy">© 2026 Programa de Becas Bicentenario. Todos los derechos reservados.</p>
+</div>
+<div>
+<h3>Enlaces Oficiales</h3>
+<ul>
+<li><a href="#">Ministerio de Educación</a></li>
+<li><a href="#">Portal de Transparencia</a></li>
+<li><a href="#">Términos y Condiciones</a></li>
+</ul>
+</div>
+<div>
+<h3>Contacto y Redes Sociales</h3>
+<p><a href="mailto:soporte@becasbicentenario.bo">soporte@becasbicentenario.bo</a></p>
+<div class="footer__redes">
+<a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.5V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.7H7.8V14h2.7v8z"/></svg></a>
+<a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l7.1 9.5L4.4 21h2.5l5.3-6.6 4.3 6.6H20l-7.4-9.9L18.9 3h-2.5l-4.8 6L7.5 3z"/></svg></a>
+<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+</div>
+</div>
+</div>
+<div class="footer__base">Gestión Transparente de Beneficios Académicos · Módulo 2.7</div>
+</footer>
+<script src="../js/validaciones.js"></script>
+</body>
+</html>

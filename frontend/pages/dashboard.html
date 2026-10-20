@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becas Bicentenario | Panel Principal</title>
+<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<!-- Navbar estándar: logo SVG + menú por rol + avatar/badge + salir -->
+<header class="site-header">
+<nav class="navbar" aria-label="Navegación principal">
+<a href="dashboard.html" class="navbar__brand"><img src="../img/logo.svg" alt="Logo Becas Bicentenario"> Becas Bicentenario</a>
+<button class="navbar__toggle" aria-label="Abrir menú">☰</button>
+<ul class="navbar__menu">
+<li><a class="navbar__link" data-public="1" data-roles="Estudiante,Evaluador,Administrador" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10h-5v-6h-6v6H4z"/></svg>Panel</a></li>
+<li><a class="navbar__link" data-roles="Estudiante" href="solicitar_beca.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M9 12h7M9 16h7"/></svg>Postular</a></li>
+<li><a class="navbar__link" data-roles="Estudiante" href="estado_solicitud.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mi estado</a></li>
+<li><a class="navbar__link" data-public="1" data-roles="Estudiante,Evaluador,Administrador" href="becas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg>Becas</a></li>
+<li><a class="navbar__link" data-roles="Evaluador,Administrador" href="gestionar_solicitudes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 13l2 2 4-4"/></svg>Evaluar</a></li>
+<li><a class="navbar__link" data-roles="Administrador" href="reportes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Reportes</a></li>
+</ul>
+<div class="navbar__user">
+<span class="navbar__avatar" data-avatar>?</span>
+<span class="navbar__badge" data-rol-badge>Invitado</span>
+<a class="navbar__logout" data-logout href="#" onclick="logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4M16 17l5-5-5-5M21 12H9"/></svg>Salir</a>
+<a class="navbar__logout" data-login-link href="login.html">Ingresar</a>
+</div>
+</nav>
+</header>
+
+<main class="container">
+<!-- Hero institucional sobre fondo oscuro: botones sólidos siempre legibles -->
+<section class="hero" aria-label="Bienvenida">
+<div>
+<h2>Portal Único de Postulación</h2>
+<p>Gestión Transparente de Beneficios Académicos: postula, sigue tu expediente y accede a becas de excelencia y apoyo social.</p>
+<div class="hero__cta">
+<a class="btn btn--secondary" data-hero-postular href="solicitar_beca.html">Nueva postulación</a>
+<a class="btn btn--hero" href="becas.html">Ver becas</a>
+</div>
+</div>
+<img src="../img/hero.svg" alt="Ilustración de graduación">
+</section>
+
+<!-- Layout .dashboard: sidebar + contenido (Grid) -->
+<div class="dashboard">
+<aside class="dashboard__side" aria-label="Accesos por rol">
+<h2>Accesos</h2>
+<!-- Botones estilizados con icono (los filtra renderizarMenu() por rol) -->
+<div class="side-links">
+<a class="side-btn" data-public="1" data-roles="Estudiante" href="solicitar_beca.html"><svg viewBox="0 0 24 24" fill="none" stroke="#2f5bd7" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M9 12h7M9 16h7"/></svg><span><strong>Postular a beca</strong><small>Estudiante · Módulo 1</small></span></a>
+<a class="side-btn" data-public="1" data-roles="Estudiante" href="estado_solicitud.html"><svg viewBox="0 0 24 24" fill="none" stroke="#2f5bd7" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><strong>Ver mi estado</strong><small>Estudiante · Módulo 2</small></span></a>
+<a class="side-btn" data-roles="Evaluador,Administrador" href="gestionar_solicitudes.html"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 13l2 2 4-4"/></svg><span><strong>Evaluar solicitudes</strong><small>Evaluador/Admin</small></span></a>
+<a class="side-btn" data-roles="Administrador" href="reportes.html"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg><span><strong>Reportes</strong><small>Admin · Módulo 3</small></span></a>
+</div>
+</aside>
+<div class="dashboard__main">
+<section aria-labelledby="t-res">
+<h2 id="t-res">Resumen</h2>
+<!-- KPIs con acento de color, número destacado e icono (los llena validaciones.js) -->
+<div class="cards">
+<article class="card kpi"><div class="kpi__top">
+<span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2f5bd7" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M9 12h7M9 16h7"/></svg></span>
+<div><div class="kpi__num" data-stat="postulaciones">—</div><small>Total Postulaciones</small></div>
+</div></article>
+<article class="card kpi kpi--gold"><div class="kpi__top">
+<span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg></span>
+<div><div class="kpi__num" data-stat="activas">—</div><small>Becas Activas</small></div>
+</div></article>
+<article class="card kpi kpi--green"><div class="kpi__top">
+<span class="kpi__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+<div><div class="kpi__num" data-stat="evaluacion">—</div><small>En Evaluación</small></div>
+</div></article>
+</div>
+</section>
+</div>
+</div>
+</main>
+
+<!-- Footer institucional de 3 columnas -->
+<footer class="site-footer">
+<div class="footer-grid">
+<div>
+<img class="footer__logo" src="../img/logo.svg" alt="Logo Becas Bicentenario">
+<p class="footer__lema">Impulsando el futuro de nuestra nación</p>
+<p class="footer__copy">© 2026 Programa de Becas Bicentenario. Todos los derechos reservados.</p>
+</div>
+<div>
+<h3>Enlaces Oficiales</h3>
+<ul>
+<li><a href="#">Ministerio de Educación</a></li>
+<li><a href="#">Portal de Transparencia</a></li>
+<li><a href="#">Términos y Condiciones</a></li>
+</ul>
+</div>
+<div>
+<h3>Contacto y Redes Sociales</h3>
+<p><a href="mailto:soporte@becasbicentenario.bo">soporte@becasbicentenario.bo</a></p>
+<div class="footer__redes">
+<a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.5V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.7H7.8V14h2.7v8z"/></svg></a>
+<a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l7.1 9.5L4.4 21h2.5l5.3-6.6 4.3 6.6H20l-7.4-9.9L18.9 3h-2.5l-4.8 6L7.5 3z"/></svg></a>
+<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+</div>
+</div>
+</div>
+<div class="footer__base">Gestión Transparente de Beneficios Académicos · Módulo 2.7</div>
+</footer>
+<script src="../js/validaciones.js"></script>
+</body>
+</html>
