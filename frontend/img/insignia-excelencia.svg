@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 110" role="img" aria-label="Insignia Excelencia Académica">
-  <circle cx="60" cy="52" r="40" fill="#c9a227"/>
-  <circle cx="60" cy="52" r="32" fill="#f6e27a"/>
-  <path d="M60 28l7.5 15.4 17 2.4-12.3 11.9 2.9 16.9-15.1-8-15.1 8 2.9-16.9-12.3-11.9 17-2.4L60 28z" fill="#1a3a8f"/>
-  <rect x="42" y="86" width="12" height="18" fill="#1a3a8f" transform="rotate(12 48 95)"/>
-  <rect x="66" y="86" width="12" height="18" fill="#2f5bd7" transform="rotate(-12 72 95)"/>
-</svg>
